@@ -1,2 +1,3 @@
 pyobjc
 iterm2
+googletrans

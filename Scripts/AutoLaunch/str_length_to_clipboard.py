@@ -30,7 +30,7 @@ async def main(connection):
         session = app.get_session_by_id(session_id)
         selection = await session.async_get_selection()
         selected_text = await session.async_get_selection_text(selection)
-        length = str(len(selected_text))
+        length = str(len(selected_text.strip()))
         await save_clipboard(length)
         await component.async_open_popover(session_id, to_html(f'{length} Copied!'), iterm2.util.Size(100, 50))
 
