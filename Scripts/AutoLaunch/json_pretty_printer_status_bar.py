@@ -2,11 +2,11 @@ import iterm2
 import json
 
 
-def tohtml(text):
+def to_html(text):
     return "<pre>" + text.replace("&", "&amp;").replace("<", "&lt;") + "</pre>"
 
 
-def prettyprint(text):
+def pretty_print(text):
     try:
         root = json.loads(text)
     except json.decoder.JSONDecodeError as e:
@@ -22,8 +22,8 @@ async def main(connection):
     async def onclick(session_id):
         session = app.get_session_by_id(session_id)
         selection = await session.async_get_selection()
-        selectedText = await session.async_get_selection_text(selection)
-        await component.async_open_popover(session_id, tohtml(prettyprint(selectedText)), iterm2.util.Size(600, 600))
+        selected_text = await session.async_get_selection_text(selection)
+        await component.async_open_popover(session_id, to_html(pretty_print(selected_text)), iterm2.util.Size(600, 600))
 
     # Define the configuration knobs:
     vl = "json_pretty_printer"
